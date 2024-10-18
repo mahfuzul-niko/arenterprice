@@ -8,4 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::redirect('/', '/login');
+
+Route::get('/home', action: [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

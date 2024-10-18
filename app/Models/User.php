@@ -11,7 +11,10 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    protected $guarded = [];
 
+
+    public const ROLES = ['admin' => 2, 'user' => 1 , 'agent'=> 3];
     /**
      * The attributes that are mass assignable.
      *
