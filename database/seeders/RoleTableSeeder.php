@@ -24,5 +24,56 @@ class RoleTableSeeder extends Seeder
                 'name' => 'Agent',
             ],
         ]);
+        DB::table('units')->insert([
+            [
+                'unit' => 'kg',
+                'name' => 'Kilogram',
+            ],
+            [
+                'unit' => 'l',
+                'name' => 'Litre',
+            ],
+            [
+                'unit' => 'g',
+                'name' => 'Gram',
+            ],
+            [
+                'unit' => 'ml',
+                'name' => 'Millilitre',
+            ],
+            [
+                'unit' => 'm',
+                'name' => 'Meter',
+            ],
+            [
+                'unit' => 'cm',
+                'name' => 'Centimeter',
+            ],
+            [
+                'unit' => 'mm',
+                'name' => 'Millimeter',
+            ],
+            [
+                'unit' => 'ft',
+                'name' => 'Foot',
+            ],
+            [
+                'unit' => 'in',
+                'name' => 'Inch',
+            ],
+            [
+                'unit' => 'pcs',
+                'name' => 'Pieces',
+            ],
+            [
+                'unit' => 'doz',
+                'name' => 'Dozen',
+            ],
+            [
+                'unit' => 'ton',
+                'name' => 'Ton',
+            ],
+        ]);
+        
     }
 }

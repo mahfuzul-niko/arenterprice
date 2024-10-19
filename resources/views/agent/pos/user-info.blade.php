@@ -21,51 +21,54 @@
                         </div>
                     </form>
                     @if (request()->phone)
-                    @if ($customer->phone)
-                        <div class="alert alert-success" role="alert">
-                            You are a Customer complete Order
-                        </div>
-                    @else
-                        <div class="alert alert-warning" role="alert">
-                            Fill the required form to complete Order
-                        </div>
-                    @endif
+                        @if ($customer->phone)
+                            <div class="alert alert-success" role="alert">
+                                You are a Customer complete Order
+                            </div>
+                        @else
+                            <div class="alert alert-warning" role="alert">
+                                Fill the required form to complete Order
+                            </div>
+                        @endif
 
-                    <form>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class=" mb-3">
-                                    <label for="" class="">Total Point</label>
-                                    <input type="text" class="form-control" id="" placeholder="" required
-                                        name="points" value="{{$total_point}}" disabled>
+                        <form action="{{ route('agent.create.order') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="phone" value="{{ request()->phone }}">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class=" mb-3">
+                                        <label for="" class="">Total Point</label>
+                                        <input type="text" class="form-control" id="" placeholder=""
+                                            required name="points" value="{{ $total_point }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class=" mb-3">
+                                        <label for="" class="">Added Point</label>
+                                        <input type="text" class="form-control" id="" placeholder=""
+                                            required name="added_points" value="+ {{ $add_points }}" disabled>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class=" mb-3">
-                                    <label for="" class="">Added Point</label>
-                                    <input type="text" class="form-control" id="" placeholder="" required
-                                        name="added_points" value="+ {{$add_points}}" disabled>
-                                </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingnameInput"
+                                    placeholder="Enter Name" value="{{ $customer->name }}" name="name">
+                                <label for="floatingnameInput">Name</label>
                             </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Name" value="{{$customer->name}}" name="name">
-                            <label for="floatingnameInput">Name</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingemailInput"
-                                placeholder="Enter Email address" value="{{$customer->email}}" name="email">
-                            <label for="floatingemailInput">Email address</label>
-                        </div>
-                        <div class=" mb-3">
-                            <label for="">Address</label>
-                            <textarea name="address" id="" rows="5" class="form-control" name="address">{{$customer->address}}</textarea>
-                        </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingemailInput"
+                                    placeholder="Enter Email address" value="{{ $customer->email }}" name="email">
+                                <label for="floatingemailInput">Email address</label>
+                            </div>
+                            <div class=" mb-3">
+                                <label for="">Address</label>
+                                <textarea name="address" id="" rows="5" class="form-control" name="address">{{ $customer->address }}</textarea>
+                            </div>
 
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary w-md ">Submit</button>
-                        </div>
-                    </form>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary w-md ">Submit</button>
+                            </div>
+                        </form>
                     @endif
                 </div>
                 <!-- end card body -->

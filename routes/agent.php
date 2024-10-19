@@ -12,5 +12,6 @@ Route::middleware(['role:agent'])->group(function () {
         Route::get('/point-of-sale', 'pos')->name('pos');
         Route::get('/user-info', 'userInfo')->name('user.info');
         Route::post('/check-out', 'addToCart')->name('add.cart');
+        Route::post('/order-create', 'orderCreate')->name('create.order');
     });
 });

@@ -12,9 +12,9 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username');
-            $table->integer('points')->default(0);
+            $table->string('name')->nullable();
+            $table->string('username')->nullable();
+            $table->decimal('points', 10, 2)->default(0);
             $table->tinyInteger('role')->default(2);
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
