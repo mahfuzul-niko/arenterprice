@@ -7,9 +7,17 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Dashboard</li>
-
-                <li><a href="#"><i class="bx bx-food-menu"></i><span>Dashboard</span></a></li>
+                @if (auth()->user()->role == 2)
+                <li><a href="{{route('admin.dashboard')}}"><i class="bx bx-food-menu"></i><span>Dashboard</span></a></li>
+                <li><a href="{{route('customer.order')}}"><i class="bx bx-detail"></i><span>Order</span></a></li>
+                @endif
+                @if (auth()->user()->role == 3)
+                <li><a href="{{route('agent.dashboard')}}"><i class="bx bx-food-menu"></i><span>Dashboard</span></a></li>
                 <li><a href="{{route('agent.pos')}}"><i class="bx bxl-product-hunt "></i><span>Point Of Sale</span></a></li>
+                <li><a href="{{route('customer.order')}}"><i class="bx bx-detail"></i><span>Order</span></a></li>
+                @endif
+
+               
 
                 {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

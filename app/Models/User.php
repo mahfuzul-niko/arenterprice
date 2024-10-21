@@ -14,7 +14,9 @@ class User extends Authenticatable
     protected $guarded = [];
 
 
-    public const ROLES = ['admin' => 2, 'user' => 1 , 'agent'=> 3];
+    public const ROLES = ['admin' => 2, 'user' => 1, 'agent' => 3];
+    public const ROLES_id = [2 => 'admin', 1 => 'user', 3 => 'agent'];
+
     /**
      * The attributes that are mass assignable.
      *

@@ -139,39 +139,39 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Date & Submit</h5>
-                    <p class="card-title-desc">Enter all the data</p>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Date & Submit</h5>
+                        <p class="card-title-desc">Enter all the data</p>
 
-                    <div class="col-md-12">
-                        <div class="form-floating mb-3">
-                            <input type="number" class="form-control grand-total" id="grandTotal"
-                                placeholder="Grand Total" name="total_price" readonly>
-                            <label for="grandTotal">Grand Total</label>
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control grand-total" id="grandTotal"
+                                    placeholder="Grand Total" name="total_price" readonly>
+                                <label for="grandTotal">Grand Total</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12">
+                        <div class="col-md-12">
 
-                        <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="paid_price" placeholder="Paid Price"
-                                name="paid_price" >
-                            <label for="paid_price">Paid Price</label>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="paid_price" placeholder="Paid Price"
+                                    name="paid_price" >
+                                <label for="paid_price">Paid Price</label>
+                            </div>
+
                         </div>
 
-                    </div>
-
-                    <div class="row align-items-end gap-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Sale Date</label>
-                            <input type="date" class="form-control" id="saleDate" name="dates">
-                        </div>
-                        <div class="col-md-5 text-end">
-                            <button type="submit" class="btn btn-primary w-md">Submit</button>
+                        <div class="row align-items-end gap-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Sale Date</label>
+                                <input type="date" class="form-control" id="saleDate" name="dates">
+                            </div>
+                            <div class="col-md-5 text-end">
+                                <button type="submit" class="btn btn-primary w-md">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </form>
 

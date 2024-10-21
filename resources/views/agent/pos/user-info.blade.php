@@ -12,7 +12,7 @@
 
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingInput" placeholder="" required
-                                name="phone" value="{{ request()->phone }}">
+                                name="phone" value="{{ request()->phone }}" >
                             <label for="floatingInput" class="ms-2">Number</label>
                         </div>
                         <div class="d-flex justify-content-end gap-2 mb-3">

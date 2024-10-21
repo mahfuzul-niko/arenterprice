@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Agent\AgentController;
 use App\Http\Controllers\Agent\PagesController;
 use App\Http\Controllers\Agent\PosController;
 use Illuminate\Support\Facades\Route;
@@ -14,4 +15,8 @@ Route::middleware(['role:agent'])->group(function () {
         Route::post('/check-out', 'addToCart')->name('add.cart');
         Route::post('/order-create', 'orderCreate')->name('create.order');
     });
+    Route::controller(AgentController::class)->group(function () {
+        
+    });
+
 });

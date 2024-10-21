@@ -110,9 +110,9 @@
     <!-- dashboard init -->
     <script src="{{ asset('admin/js/pages/dashboard.init.js') }}"></script>
 
-    @stack('scripts')
     <!-- App js -->
     <script src="{{ asset('admin/js/app.js') }}"></script>
+    @stack('scripts')
 </body>
 
 

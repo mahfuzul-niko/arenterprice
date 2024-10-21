@@ -15,10 +15,9 @@ return new class extends Migration {
             $table->string('name')->nullable();
             $table->string('username')->nullable();
             $table->decimal('points', 10, 2)->default(0);
-            $table->tinyInteger('role')->default(2);
+            $table->tinyInteger('role')->default(1);
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
-            $table->text('bio')->nullable();
             $table->string('email')->nullable()->unique();
             $table->string('phone')->unique();
             $table->timestamp('email_verified_at')->nullable();

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -70,4 +70,58 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}
+
+<x-auth>
+    <x-slot name="auth_title">
+        <h5 class="text-primary">Welcome Back !</h5>
+        <p>Sign in to continue working.</p>
+    </x-slot>
+    <x-slot name="auth_link">
+        <p>Don't have an account ? <a href="{{route('register')}}" class="fw-medium text-primary"> Signup now </a> </p>
+    </x-slot>
+
+    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="mb-3">
+            <label for="phone" class="form-label">Number</label>
+            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Enter Number" name="phone" value="{{ old('phone') }}">
+            @error('phone')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <div class="input-group auth-pass-inputgroup">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter password" aria-label="Password"
+                    aria-describedby="password-addon" name="password">
+                <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+    
+        <div class="form-check">
+            <input class="form-check-input"  >
+            <input class="form-check-input" type="checkbox" id="remember-check" name="remember" {{ old('remember') ? 'checked' : '' }}>
+            <label class="form-check-label" for="remember-check">
+                Remember me
+            </label>
+        </div>
+    
+        <div class="mt-3 d-grid">
+            <button class="btn btn-primary waves-effect waves-light" type="submit">Log In</button>
+        </div>
+    
+        <div class="mt-4 text-center">
+            <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock me-1"></i> Forgot your password?</a>
+        </div>
+    </form>
+    
+</x-auth>

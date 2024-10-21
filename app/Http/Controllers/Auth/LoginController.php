@@ -32,7 +32,7 @@ class LoginController extends Controller
             case 2:
                 return '/admin/dashboard';
             case 3:
-                return '/agent/dashboard';
+                return '/agent/point-of-sale';
             default:
                 return '/home';
         }

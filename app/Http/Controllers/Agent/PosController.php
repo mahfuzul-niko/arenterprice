@@ -29,7 +29,7 @@ class PosController extends Controller
         ]);
         $cart = session('cart');
 
-        return redirect()->route('agent.user.info')->with('success', 'Products added successfully');
+        return redirect()->route('agent.user.info')->with('warning', 'Complite Customer Information');
     }
     public function userInfo()
     {
@@ -58,6 +58,8 @@ class PosController extends Controller
         if ($total_price > $paid_price) {
 
             $due = $total_price - $paid_price;
+        } else {
+            $due = 0;
         }
 
 
@@ -84,7 +86,7 @@ class PosController extends Controller
         $order->due = $due;
         $order->date = $date;
         $order->save();
-        
+
         foreach ($cart['products'] as $product) {
             Product::create([
                 'order_id' => $order->id,
