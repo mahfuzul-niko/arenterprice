@@ -30,6 +30,7 @@ class OrderController extends Controller
         $history = new History; 
         $history->order_id = $order->id;
         $history->user_id = $order->user->id;
+        $history->author = auth()->user()->id;
         $history->date = $request->date;
         $history->amount = $request->amount;
         $history->save();

@@ -36,4 +36,22 @@ class Order extends Model
 
         ;
     }
+    public function scopeUser_filter($query)
+    {
+        return $query->
+            when(request()->has('search'), function ($q): mixed {
+                return $q->where('unique_id', request('search'));
+            })
+            ->when(request()->has('total_price'), function ($q) {
+                $q->orderByDesc('total_price');
+            })
+            ->when(request()->has('paid_price'), function ($q) {
+                $q->orderByDesc('paid_price');
+            })
+            ->when(request()->has('due'), function ($q) {
+                $q->orderByDesc('due');
+            })
+
+        ;
+    }
 }

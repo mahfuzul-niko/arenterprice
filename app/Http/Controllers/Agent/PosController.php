@@ -62,24 +62,28 @@ class PosController extends Controller
             $due = 0;
         }
 
-
-
-        $user = User::updateOrCreate(
-            ['phone' => $request->phone],
-            [
+        $user = User::where('phone', $request->phone)->first();
+        if ($user) {
+            $user->name = $request->name;
+            $user->username = Str::slug($request->name);
+            $user->points = $request->points;
+            $user->email = $request->email;
+            $user->address = $request->address;
+            $user->save();
+        } else {
+            $user = User::create([
                 'name' => $request->name,
+                'phone' => $request->phone,
                 'username' => Str::slug($request->name),
-                'points' => $request->points,
                 'email' => $request->email,
+                'points' => $request->points,
                 'address' => $request->address,
-                'password' => Hash::make(substr(str_shuffle(str_repeat('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 8)), 0, 8)),
-            ]
-        );
-
-
-
+                'password' => Hash::make(substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 8)), 0, 8)) // Generate password
+            ]);
+        }
         $order = new Order();
         $order->user_id = $user->id;
+        $order->author = auth()->user()->id;
         $order->unique_id = substr(str_shuffle(str_repeat('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 12)), 0, 12);
         $order->total_price = $total_price;
         $order->paid_price = $paid_price;
