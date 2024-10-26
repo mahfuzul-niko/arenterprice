@@ -43,7 +43,6 @@
                                     <th>Product Name</th>
                                     <th>Product Price</th>
                                     <th>Product Quantity</th>
-                                    <th>Product Note</th>
                                 </tr>
                             </thead>
 
@@ -57,9 +56,8 @@
                                         <td>
                                             {{ $product->product_name }}
                                         </td>
-                                        <td>{{ $product->price }}</td>
-                                        <td>{{ $product->quantity }}</td>
-                                        <td>{{ $product->description }}</td>
+                                        <td>{{ $product->pivot->total_price }}</td>
+                                        <td>{{ $product->pivot->quantity }}</td>
                                     </tr>
                                 @endforeach
 
@@ -75,7 +73,7 @@
                     <h5 class="card-title">Date & Due Clear</h5>
                     <p class="card-title-desc">Enter the amount or paments</p>
 
-                    <form action="{{route('due.clear',$order)}}" method="POST">
+                    <form action="{{route('agent.due.clear',$order)}}" method="POST">
                         @csrf
                         <div class="col-md-12">
 
@@ -97,6 +95,40 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">History of due</h5>
+                    <p class="card-title-desc">Enter the amount or paments</p>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($order->histories as $key => $history)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>
+                                            {{ $history->date }}
+                                        </td>
+                                        <td>
+                                            {{ $history->amount }}
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
             </div>
         </div>

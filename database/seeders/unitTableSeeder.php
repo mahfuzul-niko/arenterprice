@@ -6,24 +6,14 @@ use DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RoleTableSeeder extends Seeder
+class unitTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('roles')->insert([
-            [
-                'name' => 'User',
-            ],
-            [
-                'name' => 'Admin',
-            ],
-            [
-                'name' => 'Agent',
-            ],
-        ]);
+        
         DB::table('units')->insert([
             [
                 'unit' => 'kg',
@@ -74,6 +64,5 @@ class RoleTableSeeder extends Seeder
                 'name' => 'Ton',
             ],
         ]);
-        
     }
 }

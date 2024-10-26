@@ -29,12 +29,7 @@ Route::middleware('auth')->group(function () {
 
     });
 });
-Route::middleware(['auth', 'role:agent,admin'])->group(function () {
-    Route::controller(OrderController::class)->group(function () {
-        Route::get('customer/order', 'Order')->name('customer.order');
-        Route::get('customer/order/{unique_id}', 'singleOrder')->name('single.order');
-        Route::post('customer/due/clear/{order}', 'makePamente')->name('due.clear');
 
+ Route::get('/mail-view-user', function () {
+        return view('mails.order-completed-user');
     });
-
-});

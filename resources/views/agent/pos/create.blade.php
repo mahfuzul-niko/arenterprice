@@ -1,162 +1,87 @@
 <x-admin>
-    @push('scripts')
-        <script>
-            // Function to calculate total price for each card
-            function calculateTotalPrice(card) {
-                const priceInput = card.querySelector('.price-input');
-                const quantityInput = card.querySelector('.quantity-input');
-                const price = parseFloat(priceInput.value) || 0;
-                const quantity = parseFloat(quantityInput.value) || 0;
-                return price * quantity;
-            }
 
-            // Function to calculate grand total across all cards
-            function calculateGrandTotal() {
-                const productCards = document.querySelectorAll('.product-card');
-                let grandTotal = 0;
-
-                productCards.forEach(card => {
-                    grandTotal += calculateTotalPrice(card);
-                });
-
-                // Update the grand total field
-                document.querySelector('.grand-total').value = grandTotal.toFixed(2);
-            }
-
-            // Add event listeners to input fields to calculate total on change
-            document.addEventListener('input', function(e) {
-                if (e.target.classList.contains('price-input') || e.target.classList.contains('quantity-input')) {
-                    calculateGrandTotal();
-                }
-            });
-
-            // Add a new product card
-            document.getElementById('addCard').addEventListener('click', function() {
-                const productCards = document.getElementById('product-cards');
-                const originalCard = productCards.querySelector('.product-card');
-                const newCard = originalCard.cloneNode(true);
-
-                // Get current count of cards
-                const cardCount = productCards.getElementsByClassName('product-card').length;
-
-                // Update input names to reflect new product index
-                newCard.querySelectorAll('input, textarea, select').forEach(input => {
-                    const newName = input.name.replace(/\d+/, cardCount); // Increment the index
-                    input.name = newName;
-                    input.value = ''; // Clear the input values
-                });
-
-                productCards.appendChild(newCard);
-
-                // Recalculate the grand total whenever a new card is added
-                calculateGrandTotal();
-            });
-
-            // Remove last product card
-            document.getElementById('removeCard').addEventListener('click', function() {
-                const productCards = document.getElementById('product-cards');
-                const cards = productCards.getElementsByClassName('product-card');
-
-                if (cards.length > 1) {
-                    productCards.removeChild(cards[cards.length - 1]);
-                    calculateGrandTotal(); // Recalculate after removing a card
-                }
-            });
-        </script>
-    @endpush
     <x-slot name="title">Point Of Sell</x-slot>
+    <div class="card ">
+        <div class="card-body">
+            <form class="app-search d-flex gap-3 " method="GET" action="{{ route('agent.product') }}">
+                <div class="position-relative">
+                    <input type="text" class="form-control" name="search" placeholder="Search..."
+                        value="{{ request('search') }}">
+                    <span class="bx bx-search-alt"></span>
+                </div>
+                <button type="submit" class="btn btn-primary rounded-circle fw-bold"><i
+                        class="bx bx-search"></i></button>
+                <a href="{{ route('agent.pos') }}" class="btn btn-danger rounded-circle"><i
+                        class="bx bx-revision"></i></a>
+            </form>
+        </div>
+    </div>
+    <div class="row">
 
-    <form class="row" action="{{ route('agent.add.cart') }}" method="POST">
-        @csrf
 
         <div class="col-md-8">
-            <div id="product-cards">
-                <div class="card product-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Sale Products</h5>
-                        <p class="card-title-desc">Enter all the data</p>
+            <div class="card">
+                <div class="card-body">
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="brandName"
-                                        placeholder="Enter Brand Name" name="products[0][brand_name]" required>
-                                    <label for="brandName">Brand Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="productName"
-                                        placeholder="Enter Product Name" name="products[0][product_name]" required>
-                                    <label for="productName">Product Name</label>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
 
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control price-input" placeholder="Enter Price"
-                                        min="0" name="products[0][price]" required>
-                                    <label for="price">Price</label>
-                                </div>
-                            </div>
-
-                            <div class="col-md-2">
-                                <div class="mb-3">
-                                    <select class="form-control" name="products[0][unit]" required>
-                                        <option value="unit" selected>Unit</option>
-                                        @foreach ($units as $item)
-                                        <option value="{{$item->unit}}" >{{$item->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control quantity-input"
-                                        placeholder="Enter Quantity" min="0" name="products[0][quantity]"
-                                        required>
-                                    <label for="quantity">Quantity</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <textarea class="form-control" rows="3" name="products[0][description]" required></textarea>
-                        </div>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>image</th>
+                                    <th>Brand Name</th>
+                                    <th>Product Name</th>
+                                    <th>Price / Unit</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($products as $key => $product)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td><img src="{{ $product->image ? Storage::url($product->image) : asset('admin/images/product/no-product.png') }}"
+                                                class="img-fluid" alt="..."
+                                                style="height: 100px; width: 150px; object-fit: cover;"></td>
+                                        <td>{{ $product->brand_name }}</td>
+                                        <td>{{ $product->product_name }}</td>
+                                        <td>{{ $product->price }} / {{ $product->unit }} </td>
+                                        <td>
+                                            <form action="{{ route('agent.add.cart') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product" value="{{ $product->id }}">
+                                                <input type="hidden" name="quantity" value="1" min="1">
+                                                <button type="submit" class="btn btn-success"><i
+                                                        class="bx bx-cart "></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-
-            <!-- Add and Remove buttons -->
-            <div class="text-end my-3">
-                <a id="removeCard" class="btn btn-danger"><i class="bx bx-trash"></i></a>
-                <a id="addCard" class="btn btn-success"><i class="bx bx-plus"></i></a>
             </div>
         </div>
 
         <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Date & Submit</h5>
-                        <p class="card-title-desc">Enter all the data</p>
-
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Date & Submit</h5>
+                    <p class="card-title-desc">Enter all the data</p>
+                    <form action="{{ route('agent.add.pament') }}" method="POST">
+                        @csrf
                         <div class="col-md-12">
+
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control grand-total" id="grandTotal"
-                                    placeholder="Grand Total" name="total_price" readonly>
-                                <label for="grandTotal">Grand Total</label>
+                                <input type="text" class="form-control" id="floatingnameInput"
+                                    value="{{ $grandTotal }}" name="total_price" placeholder="Enter Name" disabled>
+                                <label for="floatingnameInput">Grand Total</label>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="paid_price" placeholder="Paid Price"
-                                    name="paid_price" >
-                                <label for="paid_price">Paid Price</label>
+                                <input type="number" min="0" class="form-control" id="floatingnameInput"
+                                    value="" placeholder="Enter Name" name="paid_price">
+                                <label for="floatingnameInput">Paid Price</label>
                             </div>
 
                         </div>
@@ -170,10 +95,65 @@
                                 <button type="submit" class="btn btn-primary w-md">Submit</button>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    {{-- cart table  --}}
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product Name</th>
+                                    <th>price</th>
+                                    <th>Quantity / unit</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cart as $productId => $product)
+                                    <tr>
+                                        <td>
+                                            <form action="{{ route('agent.remove.cart') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $productId }}">
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="bx bx-block "></i>
+                                                </button>
+                                            </form>
+
+                                        </td>
+                                        <td>{{ $product['name'] }}</td>
+                                        <td>{{ $product['subtotal'] }}</td>
+                                        <td>
+                                            <form id="updateCartForm_{{ $productId }}"
+                                                action="{{ route('agent.update.cart') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $productId }}">
+                                                <input type="number" class="form-control" name="quantity"
+                                                    value="{{ $product['quantity'] }}" min="1">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success"
+                                                onclick="document.getElementById('updateCartForm_{{ $productId }}').submit();">
+                                                <i class="bx bx-check-double "></i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
         </div>
-    </form>
+
+    </div>
 
 
     <script>

@@ -29,9 +29,9 @@ class LoginController extends Controller
     public function redirectTo()
     {
         switch (auth()->user()->role) {
-            case 2:
+            case 'admin':
                 return '/admin/dashboard';
-            case 3:
+            case 'agent':
                 return '/agent/point-of-sale';
             default:
                 return '/home';

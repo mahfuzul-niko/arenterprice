@@ -3,10 +3,10 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    <h4>Order details</h4>
-                </div>
+                
                 <div class="card-body">
+                    <h5 class="card-title">Order</h5>
+                    <p class="card-title-desc">This Is All Information About Your Order</p>
                     <div class="table-responsive">
                         <table class="table mb-0 ">
                             <tr>
@@ -66,6 +66,42 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">History of due</h5>
+                    <p class="card-title-desc">Enter the amount or paments</p>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($order->histories as $key => $history)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>
+                                            {{ $history->date }}
+                                        </td>
+                                        <td>
+                                            {{ $history->amount }}
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                    
                 </div>
             </div>
         </div>

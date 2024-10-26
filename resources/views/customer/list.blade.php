@@ -1,5 +1,5 @@
 <x-admin>
-    <x-slot name="title">User </x-slot>
+    <x-slot name="title">Customer list</x-slot>
     <div class="container-fluid">
 
 
@@ -8,8 +8,8 @@
             <div class="card">
 
                 <div class="card-body">
-                    <h4 class="card-title">Order Table</h4>
-                    <p class="card-title-desc">This table is for User Only</p>
+                    <h4 class="card-title">Customers Table</h4>
+                    <p class="card-title-desc">This table is for Admin & Agent Only</p>
                     <div class="col-3 mb-2">
                         <form class="app-search d-flex gap-3">
                             <div class="position-relative">
@@ -17,7 +17,7 @@
                                 <span class="bx bx-search-alt"></span>
                             </div>
                             <button type="submit" class="btn btn-primary rounded-pill">search</button>
-                            <a href="{{ route('user.order.list') }}" class="btn btn-danger rounded-circle"><i
+                            <a href="{{ route('agent.customer') }}" class="btn btn-danger rounded-circle"><i
                                 class="bx bx-revision"></i></a>
                         </form>
                     </div>
@@ -28,37 +28,35 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Order Id</th>
-                                    <th>Total Price</th>
-                                    <th>Paid Price</a></th>
-                                    <th>Due Price</th>
+                                    <th>Customer Name</th>
+                                    <th>Customer Number</th>
+                                    <th>Customer Point</th>
                                     <th>View</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $key => $order)
+                                @foreach ($users as $key => $user)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{$order->unique_id}}</td>
-                                        <td>{{ $order->total_price }}</td>
-                                        <td>{{ $order->paid_price }}</td>
-                                        <td>{{ $order->due }}</td>
-                                        <td><a href="{{ route('user.order.single', $order->unique_id) }}"
+                                        <td>{{ $user->name}}</td>
+                                        <td>{{ $user->phone}}</td>
+                                        <td>{{ $user->points}}</td>
+                                        <td><a href="{{ route('agent.single.customer', $user->id) }}"
                                                 class="btn btn-success">View</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
                 <div class="mx-auto">
-                    {{$orders->onEachSide(5)->links('pagination::bootstrap-4');}}
+                    {{ $users->onEachSide(5)->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
 
         <!-- end row -->
 
-    </div>
+    </div> <!-- container-fluid -->
 </x-admin>

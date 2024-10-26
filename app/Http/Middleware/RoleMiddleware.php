@@ -19,7 +19,7 @@ class RoleMiddleware
 
         $valid = false;
         foreach ($roles as $role) {
-            if (auth()->user()->role === User::ROLES[$role]) {
+            if (auth()->user()->role === $role) {
                 $valid = true;
                 break;
             }

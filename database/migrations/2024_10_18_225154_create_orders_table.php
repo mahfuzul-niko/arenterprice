@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('author');
             $table->string('unique_id');
             $table->integer('total_price')->default(0);
-            $table->integer('paid_price')->default(0);
+            $table->integer('paid_price')->nullable();
             $table->integer('due')->default(0);
             $table->date('date');
             $table->boolean('view')->default(false);

@@ -16,15 +16,14 @@
 
                         </div>
                     </div>
-                    @if (auth::user()->role == 1)
+                    @if (auth::user()->role == 'user')
                         <div class=" mb-4 ms-3 d-flex gap-3">
-                            <h3 class="text-danger">Points :</h3>
+                            <h3 class="text-primary">Points :</h3>
                             <h3 class="text-success">{{ Auth::user()->points }}</h3>
                         </div>
                     @endif
                     <h4 class="card-title mb-4">Personal Information</h4>
 
-                    <p class="text-muted mb-4">{{ Auth::user()->bio ?? '' }}</p>
                     <div class="table-responsive">
                         <table class="table table-nowrap mb-0">
                             <tbody>
@@ -41,7 +40,7 @@
 
                                 <tr>
                                     <th scope="row">Role :</th>
-                                    <td>{{ App\Models\User::ROLES_id[Auth::user()->role] }}</td>
+                                    <td>{{Auth::user()->role }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">E-mail :</th>
@@ -119,11 +118,7 @@
                                 name="name" value="{{ Auth::user()->name }}">
                             <label for="floatingnameInput">Name</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Name"
-                                name="username" value="{{ Auth::user()->username }}" disabled>
-                            <label for="floatingnameInput">Username</label>
-                        </div>
+                        
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Name"
                                 name="phone" value="{{ Auth::user()->phone }}" disabled>

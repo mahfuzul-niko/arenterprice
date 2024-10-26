@@ -18,6 +18,7 @@ class ProfileContorller extends Controller
             'name' => 'required|max:255',
             
         ]);
+        
         $user = User::find(auth()->user()->id);
         
         if ($request->hasFile('avatar')) {
@@ -27,7 +28,6 @@ class ProfileContorller extends Controller
             $user->avatar = $request->file('avatar')->store('uploads', 'public');
         }
         $user->name = $request->name;
-        
         $user->address = $request->address;
         $user->email = $request->email;
         $user->save();

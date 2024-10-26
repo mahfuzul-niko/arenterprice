@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -14,8 +15,10 @@ class User extends Authenticatable
     protected $guarded = [];
 
 
-    public const ROLES = ['admin' => 2, 'user' => 1, 'agent' => 3];
-    public const ROLES_id = [2 => 'admin', 1 => 'user', 3 => 'agent'];
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -46,4 +49,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function scopeFilter($query)
+    {
+        return $query->when(request()->has('search'), function ($q) {
+            $search = request('search');
+
+            return $q->where('name', 'like', '%' . $search . '%')
+                ->orWhere('phone', $search); 
+        });
+    }
+
+
 }

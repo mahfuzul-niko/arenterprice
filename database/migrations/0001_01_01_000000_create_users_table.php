@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name')->nullable();
             $table->string('username')->nullable();
             $table->decimal('points', 10, 2)->default(0);
-            $table->tinyInteger('role')->default(1);
+            $table->enum('role',['admin','agent','user'])->default('user');
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
             $table->string('email')->nullable()->unique();

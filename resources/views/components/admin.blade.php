@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2024 14:13:21 GMT -->
+<!-- Mirrored from themesbrand.com/skote/layouts// by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2024 14:13:21 GMT -->
 
 <head>
 
@@ -23,6 +23,18 @@
     <!-- App js -->
     <script src="{{ asset('admin/js/plugin.js') }}"></script>
     @stack('styles')
+
+    <style>
+        .asc::after {
+            font-family: 'Font Awesome\ 5 Free';
+            content: ' \f106';
+        }
+
+        .desc::after {
+            font-family: 'Font Awesome\ 5 Free';
+            content: ' \f107';
+        }
+    </style>
 </head>
 
 <body data-sidebar="dark">
@@ -35,8 +47,15 @@
         <x-admin.header />
 
         <!-- ========== Left Sidebar Start ========== -->
-        <x-admin.leftsidebar />
-
+        @admin
+            <x-admin.leftsidebar />
+        @endadmin
+        @agent
+            <x-admin.leftsidebar />
+        @endagent
+        @user
+            <x-admin.usersidebar />
+        @enduser
         <!-- Left Sidebar End -->
 
 
@@ -53,22 +72,22 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">{{$title}}</h4>
+                                <h4 class="mb-sm-0 font-size-18">{{ $title }}</h4>
 
                                 <div class="page-title-right">
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- end page title -->
-                    {{$slot}}   
+                    {{ $slot }}
                 </div>
                 <!-- container-fluid -->
             </div>
-            
+
             <!-- End Page-content -->
             <footer class="footer">
                 <div class="container-fluid">
@@ -113,9 +132,36 @@
     <!-- App js -->
     <script src="{{ asset('admin/js/app.js') }}"></script>
     @stack('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            [...document.querySelectorAll('[data-table-filter="true"]')].forEach(element => {
+                let urlParams = new URLSearchParams(window.location.search)
+
+                if (element.dataset.order == urlParams.get('order')) {
+                    element.dataset.value = urlParams.get('value') == 'asc' ? 'desc' : 'asc';
+
+                    if (element.dataset.value == 'asc') {
+                        element.classList.remove('desc');
+                        element.classList.add('asc');
+                    } else {
+                        element.classList.remove('asc');
+                        element.classList.add('desc');
+
+                    }
+                }
+
+
+                element.addEventListener('click', function(event) {
+                    urlParams.set('order', event.target.dataset.order)
+                    urlParams.set('value', event.target.dataset.value)
+                    window.location.search = urlParams;
+                })
+            });
+        });
+    </script>
 </body>
 
 
-<!-- Mirrored from themesbrand.com/skote/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2024 14:14:09 GMT -->
+<!-- Mirrored from themesbrand.com/skote/layouts// by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2024 14:14:09 GMT -->
 
 </html>
