@@ -31,7 +31,7 @@ class PagesController extends Controller
         $totalDueCurrentMonth = Order::whereMonth('created_at', now()->month)->sum('due');
         $totalEarningCurrentMonth = Order::whereMonth('created_at', now()->month)->sum('total_price');
 
-        return view('Admin.dashboard', compact('ordersCount', 'monthlyOrderCounts', 'totalEarning', 'totalDue', 'totalDueCurrentMonth', 'totalEarningCurrentMonth', 'authorOrderTotalPrice','authorOrder'));
+        return view('admin.dashboard', compact('ordersCount', 'monthlyOrderCounts', 'totalEarning', 'totalDue', 'totalDueCurrentMonth', 'totalEarningCurrentMonth', 'authorOrderTotalPrice','authorOrder'));
     }
 
 
