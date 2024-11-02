@@ -24,13 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', );
+        $userOrder = Order::filter()->where('user_id', auth()->user()->id)->latest()->paginate(10);
+        $userOrderTotalPrice = Order::where('user_id', auth()->user()->id)->sum('total_price');
+        $userOrderDuePrice = Order::where('user_id', auth()->user()->id)->sum('due');
+        // dd();
+        return view('home', compact('userOrder', 'userOrderTotalPrice', 'userOrderDuePrice'));
     }
-    public function orderList()
-    {
-        $orders = Order::where('user_id', auth()->user()->id)->user_filter()->with('products')->paginate(20);
-        return view('user.order-list', compact('orders'));
-    }
+   
     public function singleOrder($unique_id)
     {
         $order = Order::where('unique_id', $unique_id)->firstOrFail();

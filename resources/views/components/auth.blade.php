@@ -7,13 +7,12 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Login | Skote - Admin & Dashboard Template</title>
+    <title>Login | IM & POS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('admin/images/favicon.ico') }}">
-
+    <link rel="shortcut icon" href="{{ asset('admin/images/logo/white-center.png') }}">
     <!-- Bootstrap Css -->
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -48,7 +47,7 @@
                                 <a href="/" class="auth-logo-dark">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('admin/images/logo.svg') }}" alt=""
+                                            <img src="{{ asset('admin/images/logo/black.png') }}" alt=""
                                                 class="rounded-circle" height="34">
                                         </span>
                                     </div>
