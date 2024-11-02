@@ -1,4 +1,3 @@
-
 <div class="content"
     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
     <table class="main" width="100%" cellpadding="0" cellspacing="0"
@@ -18,9 +17,12 @@
                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                                     valign="top">
                                     <h2 class="aligncenter"
-                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif; box-sizing: border-box; font-size: 24px; color: #000; line-height: 1.2em; font-weight: 400; text-align: center; margin: 40px 0 0;"
-                                        align="center">Thanks for using <b
-                                            style="font-weight: 600; text-transform: uppercase;">AR Enterprice</b>.</h2>
+                                        style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; box-sizing: border-box; font-size: 24px; color: #000; line-height: 1.2em; font-weight: 400; text-align: center; margin: 40px 0 0;"
+                                        align="center">
+                                        Thanks for using <b
+                                            style="font-weight: 600; text-transform: uppercase;">{{ config('app.name') }}</b>.
+                                    </h2>
+
                                 </td>
                             </tr>
                             <tr
@@ -37,7 +39,7 @@
                                                     valign="top"><b>Mr. {{ $order->user->name }}</b>
                                                     <br
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">Order
-                                                    UUID: 
+                                                    UUID:
                                                     {{ $order->unique_id }}
                                                     <br
                                                         style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">Order
@@ -88,7 +90,7 @@
                                                                 <td class="alignright"
                                                                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: right; border-top-width: 2px; border-top-color: #333; border-top-style: solid; border-bottom-color: #333; border-bottom-width: 2px; border-bottom-style: solid; font-weight: 700; margin: 0; padding: 5px 0;"
                                                                     align="right" valign="top">
-                                                                    {{ $order->paid_price ? $order->paid_price : 00.00 }}
+                                                                    {{ $order->paid_price ? $order->paid_price : 00.0 }}
                                                                 </td>
                                                             </tr>
                                                             <tr class="total"
@@ -128,8 +130,9 @@
                                         <p> Dear Customer Thank you for Shoping In <strong>AR
                                                 Enterprice</strong></p>
                                         <p>Your account has been created. <br> Here is your Number:
-                                            <strong>{{$order->user->phone}}</strong>
-                                            & password: <strong>{{$password}}</strong></p>
+                                            <strong>{{ $order->user->phone }}</strong>
+                                            & password: <strong>{{ $password }}</strong>
+                                        </p>
                                         <p>Please keep this password safe, or change it after logging in.</p>
                                     </td>
                                 </tr>
