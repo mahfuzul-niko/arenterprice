@@ -45,15 +45,6 @@
                         </div>
                         <div class="card-body pt-0">
                             <div class="auth-logo">
-                                <a href="/" class="auth-logo-light">
-                                    <div class="avatar-md profile-user-wid mb-4">
-                                        <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('admin/images/logo-light.svg') }}" alt=""
-                                                class="rounded-circle" height="34">
-                                        </span>
-                                    </div>
-                                </a>
-
                                 <a href="/" class="auth-logo-dark">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">

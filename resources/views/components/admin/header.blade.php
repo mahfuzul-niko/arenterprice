@@ -3,15 +3,6 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="/" class="logo logo-dark">
-                    <span class="logo-sm">
-                        <img src="{{ asset('admin/images/logo.svg') }}" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="{{ asset('admin/images/logo-dark.png') }}" alt="" height="17">
-                    </span>
-                </a>
-
                 <a href="/" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('admin/images/logo-light.svg') }}" alt="" height="22">
@@ -40,11 +31,6 @@
 
 
 
-            <div class="dropdown d-none d-lg-inline-block ms-1">
-                <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
-                    <i class="bx bx-fullscreen"></i>
-                </button>
-            </div>
 
 
 
