@@ -26,6 +26,11 @@ class LoginController extends Controller
      * @var string
      */
 
+    public function username()
+    {
+        return 'phone';
+    }
+
     public function redirectTo()
     {
         switch (auth()->user()->role) {
