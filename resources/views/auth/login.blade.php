@@ -123,5 +123,6 @@
             <a href="{{ route('password.request') }}" class="text-muted"><i class="mdi mdi-lock me-1"></i> Forgot your password?</a>
         </div>
     </form>
+{{-- yoooooooooooo --}}
     
 </x-auth>
