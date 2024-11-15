@@ -1,4 +1,4 @@
-[this](https://www.impos.thisismahfuz.com/) 
+[Arenterpice](https://www.impos.thisismahfuz.com/) 
 number : 3333; password: password;
 
 Point of Sale (POS) System for Shop Management
