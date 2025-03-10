@@ -85,7 +85,7 @@
         @csrf
         <div class="mb-3">
             <label for="phone" class="form-label">Number</label>
-            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Enter Number" name="phone" value="{{ old('phone') }}">
+            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Enter Number" name="phone" value="3333">
             @error('phone')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -96,7 +96,7 @@
         <div class="mb-3">
             <label class="form-label">Password</label>
             <div class="input-group auth-pass-inputgroup">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter password" aria-label="Password"
+                <input type="password" class="form-control @error('password') is-invalid @enderror" value="password" aria-label="Password"
                     aria-describedby="password-addon" name="password">
                 <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                 @error('password')
